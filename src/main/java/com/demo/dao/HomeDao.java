@@ -9,7 +9,9 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HomeDao implements IHome{
+public class HomeDao extends BaseDAO implements IHome{
+
+    BaseDAO baseDAO;
 
     @Autowired
     protected JdbcTemplate mainDataSourceTemplate;
@@ -37,4 +39,10 @@ public class HomeDao implements IHome{
         root_json.put("data", json_array);
         return String.valueOf(root_json);
     }
+
+    public String fetchURL(String url) {
+        return baseDAO.getURL(url);
+    }
+
+
 }
